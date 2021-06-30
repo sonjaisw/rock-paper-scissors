@@ -31,7 +31,10 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Step 3 - Have Github action build maven Project
-        run: mvn -B package --file pom.xml
+        run: |
+          mvn -B package --file pom.xml
+          mkdir staging && cp target/*.jar staging
+        
       - name: Step 4 - List of current directory
         run: ls -a
       - name: Step 5 - what is the target folder 
@@ -40,3 +43,9 @@ jobs:
           ls -a
           echo Add other actions to build,
           echo test, and deploy your project.
+          
+      - name: Step5 - persist workflow data as artifacts
+        uses: action/upload-artifact@v2
+        with: 
+          name: github action artifact
+          path: staging
