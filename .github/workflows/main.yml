@@ -45,7 +45,7 @@ jobs:
           echo test, and deploy your project.
           
       - name: Step5 - persist workflow data as artifacts
-        uses: action/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with: 
           name: github action artifact
           path: staging
